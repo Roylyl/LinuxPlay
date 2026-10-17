@@ -5,12 +5,23 @@
 <p align="center">在Linux桌面上使用iPhone的CarPlay，延续WinPlay的界面与功能。</p>
 
 <p align="center">
-  <a href="package.json"><img src="https://img.shields.io/badge/version-1.0.0-2563eb?style=flat-square" alt="源码版本1.0.0"></a>
+  <a href="package.json"><img src="https://img.shields.io/badge/source-1.0.0-2563eb?style=flat-square" alt="源码版本1.0.0"></a>
+  <a href="https://github.com/Roylyl/LinuxPlay/releases/latest"><img src="https://img.shields.io/github/v/release/Roylyl/LinuxPlay?style=flat-square&amp;label=release&amp;color=2563eb" alt="GitHub最新正式发行版"></a>
   <a href="#使用条件"><img src="https://img.shields.io/badge/platform-Linux-555555?style=flat-square" alt="Linux桌面"></a>
-  <a href="#安装"><img src="https://img.shields.io/badge/package-AppImage%20%2F%20deb-2563eb?style=flat-square" alt="AppImage和deb安装包"></a>
   <a href="#无线连接"><img src="https://img.shields.io/badge/CarPlay-wireless-2563eb?style=flat-square" alt="无线CarPlay"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-2563eb?style=flat-square" alt="GPL-3.0-or-later许可证"></a>
+  <a href="https://github.com/Roylyl/LinuxPlay/releases"><img src="https://img.shields.io/badge/download-AppImage%20%2F%20deb-2563eb?style=flat-square" alt="Linux安装包发行页"></a>
+</p>
+
+<p align="center">
+  <a href="#主要功能"><img src="https://img.shields.io/badge/languages-%E7%AE%80%E4%BD%93%20%2F%20%E7%B9%81%E9%AB%94%20%2F%20English-555555?style=flat-square" alt="简体中文、繁體中文和English"></a>
   <a href="#从源码构建"><img src="https://img.shields.io/badge/core-Electron%2042-555555?style=flat-square" alt="Electron42桌面应用"></a>
+  <a href="https://github.com/Roylyl/LinuxPlay/releases"><img src="https://img.shields.io/github/downloads/Roylyl/LinuxPlay/total?style=flat-square&amp;label=downloads&amp;color=2563eb" alt="发行附件累计下载量"></a>
+  <a href="https://github.com/Roylyl/LinuxPlay/stargazers"><img src="https://img.shields.io/github/stars/Roylyl/LinuxPlay?style=flat-square&amp;label=stars&amp;color=2563eb" alt="GitHubStar数"></a>
+  <a href="https://github.com/Roylyl/LinuxPlay/forks"><img src="https://img.shields.io/github/forks/Roylyl/LinuxPlay?style=flat-square&amp;label=forks&amp;color=555555" alt="GitHubFork数"></a>
+  <a href="https://github.com/Roylyl/LinuxPlay/issues"><img src="https://img.shields.io/github/issues/Roylyl/LinuxPlay?style=flat-square&amp;label=issues&amp;color=555555" alt="开放Issue数"></a>
+  <a href="https://github.com/Roylyl/LinuxPlay/pulls"><img src="https://img.shields.io/github/issues-pr/Roylyl/LinuxPlay?style=flat-square&amp;label=pull%20requests&amp;color=555555" alt="开放PullRequest数"></a>
+  <a href="https://github.com/Roylyl/LinuxPlay/commits"><img src="https://img.shields.io/github/last-commit/Roylyl/LinuxPlay?style=flat-square&amp;label=last%20commit&amp;color=555555" alt="最近提交时间"></a>
 </p>
 
 <p align="center"><a href="#快速入门">快速入门</a> · <a href="#主要功能">主要功能</a> · <a href="#显示与声音">显示与声音</a> · <a href="#认证与本机数据">认证与数据</a> · <a href="#其他平台">其他平台</a> · <a href="#从源码构建">源码构建</a> · <a href="docs/RELEASE-1.0.0.md">1.0.0版本说明</a> · <a href="#来源与许可">来源与许可</a></p>
