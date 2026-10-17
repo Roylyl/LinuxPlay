@@ -1,0 +1,34 @@
+LinuxPlay 1.0.0 — Roylyl
+GPL-3.0-or-later; see LICENSE.
+
+LinuxPlay is a Linux adaptation of Roylyl/WinPlay. The WinPlay interface,
+artwork, CarPlay receiver behavior and protocol implementation are retained.
+Linux changes replace Windows platform bridges with BlueZ/RFCOMM,
+NetworkManager, desktop display integration, safeStorage-backed encryption,
+MPRIS system media integration and Linux application packaging.
+
+CarPlay control, pairing, encryption, plist and HID implementation adapted from
+Roylyl/MacPlay, based on f-io/LIVI (Lasse Heitgres and contributors).
+Wireless iAP2 identification and handoff adapted from Roylyl/AndroidPlay,
+based on shihabal3amri/DiPlay. Original source comments are retained.
+See vendor/MacPlay-NOTICE and vendor/SOURCE-AUDIT.md.
+
+No Apple endorsement or MFi certification is claimed. The bundled authentication
+pair is included in source distributions and application packages. Users may
+optionally import a replacement pair locally. Credentials
+require separate redistribution authorization. MacPlay NOTICE traces historical
+experimental credentials to DiPlay 0.2.6 APK; redistribution authorization remains
+unestablished. GPL licensing of application code does not grant rights to
+authentication credentials.
+
+Electron (MIT), its embedded Node.js runtime and Chromium/FFmpeg retain the
+license texts included with the Electron distribution. Production npm packages
+retain their respective licenses; see vendor/THIRD-PARTY-NOTICES.txt.
+The standalone Node.js runtime used by the receiver retains its bundled
+copyrights and license terms in resources/node-LICENSE.
+Python, BlueZ, NetworkManager and the desktop D-Bus service are system
+dependencies supplied by the Linux distribution and are not bundled here.
+
+The LinuxPlay icon follows the AndroidPlay/MacPlay/WinPlay icon design family
+with Linux-specific artwork. Original WinPlay artwork remains in the source
+tree as part of the migration history. Editable SVG source is included.

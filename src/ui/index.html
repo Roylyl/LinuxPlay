@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; worker-src 'self'">
+<title>LinuxPlay</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<aside>
+  <button id="collapse-sidebar" data-i18n-title="折叠侧栏" data-i18n-aria="折叠侧栏" aria-label="折叠侧栏" title="折叠侧栏">☰</button>
+  <div id="sidebar-resizer" role="separator" data-i18n-aria="调整侧栏宽度" aria-label="调整侧栏宽度"></div>
+  <div class="brand"><img class="brand-icon" src="winplay.png" alt="LinuxPlay"><span>LinuxPlay</span></div>
+  <nav data-i18n-aria="设置导航" aria-label="设置导航">
+    <button class="nav active" data-page="connection"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M10 18h4M3 8a8 8 0 0 0 0 8M21 8a8 8 0 0 1 0 8"/></svg><span data-i18n="连接">连接</span></button>
+    <button class="nav" data-page="display"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span data-i18n="显示">显示</span></button>
+    <button class="nav" data-page="audio"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 4V5L7 9zM16 8a6 6 0 0 1 0 8M19 5a10 10 0 0 1 0 14"/></svg><span data-i18n="音频">音频</span></button>
+    <button class="nav" data-page="about"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7v1"/></svg><span data-i18n="关于">关于</span></button>
+  </nav>
+  <div class="side-footer"><span class="dot" id="side-dot"></span><span id="side-status" data-i18n="未连接">未连接</span><small><span data-i18n="版本">版本</span><span id="version">1.2.4</span></small></div>
+</aside>
+<main>
+<div class="settings-content">
+<section id="connection" class="page">
+  <header><h1 data-i18n="连接">连接</h1></header>
+  <h2 class="section-title" data-i18n="接收端">接收端</h2>
+  <div class="card">
+    <div class="setting-row"><span data-i18n="状态">状态</span><span id="status" class="value" data-i18n="准备连接">准备连接</span></div>
+    <p id="status-detail" class="caption result" data-i18n="配置无线网络后启动接收。">配置无线网络后启动接收。</p>
+    <label class="setting-row"><span data-i18n="iPhone">iPhone</span><select id="targetBluetooth"><option value="" data-i18n="自动（上次连接的iPhone）">自动（上次连接的iPhone）</option></select></label>
+    <div class="actions"><button id="refresh-bt" data-i18n="刷新iPhone列表">刷新iPhone列表</button></div>
+    <p class="caption" data-i18n="自动模式优先使用上次成功显示画面的iPhone。">自动模式优先使用上次成功显示画面的iPhone。</p>
+  </div>
+  <h2 class="section-title" data-i18n="应用">应用</h2>
+  <div class="card">
+    <label class="setting-row"><span data-i18n="语言">语言</span><select id="language"><option value="system" data-i18n="跟随系统">跟随系统</option><option value="zh-Hans">简体中文</option><option value="zh-Hant">繁體中文</option><option value="en">English</option></select></label>
+    <label class="setting-row"><span data-i18n="关闭主窗口时">关闭主窗口时</span><select id="closeBehavior"><option value="ask" data-i18n="每次询问">每次询问</option><option value="exit" data-i18n="退出LinuxPlay">退出LinuxPlay</option><option value="minimize" data-i18n="最小化到托盘">最小化到托盘</option></select></label>
+    <label class="setting-row"><span data-i18n="外观">外观</span><select id="theme"><option value="system" data-i18n="跟随Linux">跟随Linux</option><option value="light" data-i18n="浅色">浅色</option><option value="dark" data-i18n="深色">深色</option></select></label>
+  </div>
+  <div id="wireless-fields">
+    <h2 class="section-title" data-i18n="无线网络">无线网络</h2>
+    <div class="card">
+      <label class="setting-row"><span data-i18n="无线模式">无线模式</span><select id="wirelessMode"><option value="hotspot" data-i18n="本机移动热点">本机移动热点</option><option value="lan" data-i18n="现有局域网">现有局域网</option></select></label>
+      <label class="setting-row"><span data-i18n="无线连接被动断开时自动重连">无线连接被动断开时自动重连</span><input id="autoReconnect" class="switch" type="checkbox" role="switch"></label>
+      <p class="caption" data-i18n="仅在已有CarPlay连接被动断开后回连上次的iPhone。主动停止接收或断开连接时不重连。">仅在已有CarPlay连接被动断开后回连上次的iPhone。主动停止接收或断开连接时不重连。</p>
+      <label class="setting-row"><span id="ssid-label" data-i18n="网络名称（SSID）">网络名称（SSID）</span><input id="ssid" maxlength="32" autocomplete="off"></label>
+      <label class="setting-row"><span id="password-label" data-i18n="网络密码">网络密码</span><input id="password" type="password" maxlength="63" autocomplete="off" data-i18n-placeholder="8—63位" placeholder="8—63位"></label>
+      <div id="network-fields">
+        <div class="setting-row"><span data-i18n="网络连接">网络连接</span><span id="network-status" class="value" role="status" data-i18n="正在检测网络…">正在检测网络…</span></div>
+        <p id="network-help" class="caption result"></p>
+        <div class="actions"><button id="refresh-network" data-i18n="重新检测">重新检测</button><button id="network-auto" data-i18n="恢复自动选择" hidden>恢复自动选择</button><button id="network-action" hidden></button></div>
+        <details id="network-advanced" class="disclosure"><summary data-i18n="手动选择网卡（高级）">手动选择网卡（高级）</summary><label class="setting-row"><span data-i18n="网络接口">网络接口</span><select id="networkInterface"><option value="" data-i18n="自动选择（推荐）">自动选择（推荐）</option></select></label><p class="caption" data-i18n="通常无需修改。只列出适合当前模式的网卡；更改后应用并重新连接。">通常无需修改。只列出适合当前模式的网卡；更改后应用并重新连接。</p></details>
+      </div>
+      <label class="setting-row"><span data-i18n="信道">信道</span><input id="channel" type="number" min="1" max="196"></label>
+      <label id="lan-bssid" class="setting-row" hidden><span data-i18n="接入点BSSID（可选）">接入点BSSID（可选）</span><input id="lanAccessPointMac" maxlength="17" autocomplete="off" placeholder="AA:BB:CC:DD:EE:FF"></label>
+      <div class="actions network-actions"><button id="read-network" data-i18n="读取当前网络和密码">读取当前网络和密码</button><button id="hotspot-settings" data-i18n="打开移动热点">打开移动热点</button><button id="bluetooth-settings" data-i18n="打开蓝牙设置">打开蓝牙设置</button></div>
+      <p id="network-result" class="caption result" hidden></p>
+      <p id="lan-guide" class="caption result" role="status" hidden></p>
+      <p id="wireless-help" class="caption"></p>
+    </div>
+  </div>
+</section>
+<section id="display" class="page" hidden>
+  <header><h1 data-i18n="显示">显示</h1></header>
+  <h2 class="section-title" data-i18n="显示器">显示器</h2>
+  <div class="card"><label class="setting-row"><span data-i18n="显示位置">显示位置</span><div class="inline"><select id="displayId"></select><button id="refresh-displays" data-i18n="刷新">刷新</button></div></label><p id="display-limit" class="caption"></p><p class="caption" data-i18n="切换显示器后应用并重新连接。">切换显示器后应用并重新连接。</p></div>
+  <h2 class="section-title" data-i18n="视频分辨率">视频分辨率</h2>
+  <div class="card resolution-card">
+    <label class="setting-row"><span data-i18n="分辨率">分辨率</span><select id="resolutionPreset"><option value="native" data-i18n="屏幕原生像素" disabled>屏幕原生像素</option><option value="1280x720">1280×720</option><option value="1920x1080">1920×1080</option><option value="2560x1440">2560×1440</option><option value="custom" data-i18n="自定义">自定义</option></select></label>
+    <div id="custom-size" hidden><label class="setting-row"><span data-i18n="宽度（像素）">宽度（像素）</span><input id="width" type="number" min="320" step="2"></label><label class="setting-row"><span data-i18n="高度（像素）">高度（像素）</span><input id="height" type="number" min="200" step="2"></label></div>
+    <label class="setting-row"><span data-i18n="严格按屏幕物理像素显示">严格按屏幕物理像素显示</span><input id="strictPixels" class="switch" type="checkbox" disabled></label>
+    <p id="physical-pixels-status" class="caption" role="status" data-i18n="正在检测屏幕物理像素，确认后可开启严格显示。">正在检测屏幕物理像素，确认后可开启严格显示。</p>
+    <div class="setting-row"><span data-i18n="请求像素">请求像素</span><span id="request-pixels" class="value">1280×720</span></div><p id="display-error" class="caption result" role="status" hidden></p><input id="fullScreen" type="checkbox" hidden>
+    <p class="caption" data-i18n="关闭时可拖动窗口边框等比例缩放；开启后固定为请求的物理像素尺寸。屏幕原生像素始终全屏显示。">关闭时可拖动窗口边框等比例缩放；开启后固定为请求的物理像素尺寸。屏幕原生像素始终全屏显示。</p>
+  </div>
+  <h2 class="section-title" data-i18n="流畅度">流畅度</h2>
+  <div class="card">
+    <label class="setting-row"><span data-i18n="最高帧率">最高帧率</span><select id="fps"><option value="30">30fps</option><option value="60">60fps</option><option value="90">90fps</option><option value="120">120fps</option></select></label>
+    <p class="caption" data-i18n="帧率为请求上限，120fps失败依次回退90、60fps。">帧率为请求上限，120fps失败依次回退90、60fps。</p><p id="fps-fallback" class="caption result" hidden></p>
+    <details class="disclosure"><summary data-i18n="接收统计">接收统计</summary><div class="metrics"><div><small data-i18n="请求帧率">请求帧率</small><strong id="metric-request">60fps</strong></div><div><small data-i18n="本次尝试">本次尝试</small><strong id="metric-attempt">—</strong></div><div><small data-i18n="收到视频">收到视频</small><strong id="metric-received">—</strong></div><div><small data-i18n="解码输出">解码输出</small><strong id="metric-decoded">—</strong></div></div><p id="video-size" class="caption" data-i18n="等待视频尺寸">等待视频尺寸</p></details>
+    <p class="caption" data-i18n="CarPlay的“智能缩放显示”可能改变界面大小，请在iPhone上调整。">CarPlay的“智能缩放显示”可能改变界面大小，请在iPhone上调整。</p>
+  </div>
+</section>
+<section id="audio" class="page" hidden>
+  <header><h1 data-i18n="音频">音频</h1></header>
+  <h2 class="section-title" data-i18n="CarPlay声音">CarPlay声音</h2>
+  <div class="card">
+    <label class="setting-row"><span data-i18n="播放iPhone音频">播放iPhone音频</span><input id="audioEnabled" class="switch" type="checkbox" checked></label>
+    <label class="slider-label"><span class="slider-name" data-i18n="媒体音量">媒体音量</span><input id="mediaVolume" type="range" min="0" max="100" value="100"><output id="media-label" for="mediaVolume">100%</output></label>
+    <label class="slider-label"><span class="slider-name" data-i18n="通话音量">通话音量</span><input id="callVolume" type="range" min="0" max="100" value="100"><output id="call-label" for="callVolume">100%</output></label>
+    <label class="setting-row"><span data-i18n="输出设备">输出设备</span><select id="outputDevice"><option value="" data-i18n="系统默认设备">系统默认设备</option></select></label>
+    <label class="setting-row"><span data-i18n="输入设备">输入设备</span><select id="inputDevice"><option value="" data-i18n="系统默认设备">系统默认设备</option></select></label>
+    <div class="setting-row"><span data-i18n="音乐传输格式">音乐传输格式</span><span id="actual-media-format" class="value" data-i18n="等待iPhone协商">等待iPhone协商</span></div>
+    <div class="actions"><button id="refresh-audio" data-i18n="刷新设备">刷新设备</button></div><p class="caption" data-i18n="音量实时生效。设备切换后应用并重新连接，麦克风使用需要系统授权。">音量实时生效。设备切换后应用并重新连接，麦克风使用需要系统授权。</p>
+  </div>
+  <h2 class="section-title" data-i18n="正在播放">正在播放</h2>
+  <div class="card"><div class="now-playing"><img id="artwork" alt="专辑封面" data-i18n-alt="专辑封面" hidden><div><strong id="track-title" data-i18n="等待iPhone上报媒体信息">等待iPhone上报媒体信息</strong><p id="track-artist"></p></div></div><input id="seek" type="range" min="0" max="1" value="0" disabled><div class="row"><small id="progress">00:00 / 00:00</small><div class="actions"><button id="previous" data-i18n="上一首">上一首</button><button id="playpause" data-i18n="播放/暂停">播放/暂停</button><button id="next" data-i18n="下一首">下一首</button></div></div></div>
+</section>
+<section id="about" class="page" hidden>
+  <header><h1 data-i18n="关于">关于</h1></header>
+  <h2 class="section-title" data-i18n="关于LinuxPlay">关于LinuxPlay</h2>
+  <div class="card">
+    <div class="setting-row"><span data-i18n="版本">版本</span><span id="about-version" class="value">1.0.0</span></div>
+    <div class="setting-row"><span data-i18n="运行架构">运行架构</span><span id="architecture" class="value">x64</span></div>
+    <div class="setting-row"><span data-i18n="开源许可">开源许可</span><span class="value">GPL-3.0-or-later</span></div>
+    <div class="setting-row"><span data-i18n="项目主页">项目主页</span><button id="project-home" class="link-button">Roylyl/LinuxPlay ↗</button></div>
+    <p class="caption" data-i18n="基于AndroidPlay与MacPlay，保留上游版权与许可证声明。">基于AndroidPlay与MacPlay，保留上游版权与许可证声明。</p>
+  </div>
+  <h2 class="section-title" data-i18n="软件更新">软件更新</h2>
+  <div class="card">
+    <label class="setting-row"><span data-i18n="自动检查更新">自动检查更新</span><input id="automatic-updates" class="switch" type="checkbox" checked></label>
+    <div class="actions"><button id="check-updates" data-i18n="检查更新">检查更新</button><button id="release-notes" data-i18n="查看发行说明">查看发行说明</button><button id="download-update" class="primary" data-i18n="下载更新" hidden>下载更新</button></div>
+    <p id="update-status" class="caption result" data-i18n="尚未检查更新">尚未检查更新</p><p id="update-detail" class="caption result" hidden></p>
+  </div>
+  <h2 class="section-title" data-i18n="日志">日志</h2>
+  <div class="card"><div class="actions"><button id="open-log" data-i18n="打开日志" disabled>打开日志</button><button id="export-diagnostics" data-i18n="导出日志">导出日志</button></div><details class="disclosure" id="recent-logs"><summary data-i18n="最近日志">最近日志</summary><pre id="logs">暂无日志</pre></details><p id="log-result" class="caption result" hidden></p></div>
+  <div class="card"><details class="disclosure" id="authentication"><summary data-i18n="认证文件">认证文件</summary><div class="setting-row"><span data-i18n="状态">状态</span><span id="auth-status" class="value" data-i18n="缺少文件">缺少文件</span></div><div class="actions"><button id="import-auth" data-i18n="导入认证文件">导入认证文件</button><button id="open-auth" data-i18n="打开认证目录">打开认证目录</button><button id="refresh-status" data-i18n="刷新状态">刷新状态</button></div><p id="auth-result" class="caption result" hidden></p><p class="caption" data-i18n="安装包内置认证文件，本机导入的配套文件优先使用。">安装包内置认证文件，本机导入的配套文件优先使用。</p></details></div>
+</section>
+</div>
+<footer class="app-footer" id="receiver-footer"><div id="running-actions" class="actions" hidden><button id="stop" data-i18n="停止接收">停止接收</button><button id="show-video" data-i18n="显示画面" disabled>显示画面</button></div><button id="start" class="primary" data-i18n="启动接收">启动接收</button></footer>
+</main>
+<div id="toast" role="status" hidden></div><audio id="system-audio"></audio>
+<script src="i18n.js"></script><script src="audio-timeline.js"></script><script src="audio.js"></script><script src="app.js"></script>
+</body>
+</html>

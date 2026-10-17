@@ -1,0 +1,133 @@
+{
+  "name": "linuxplay",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Linux CarPlay接收端，保留WinPlay界面与功能",
+  "author": "Roylyl",
+  "homepage": "https://github.com/Roylyl/LinuxPlay",
+  "desktopName": "linuxplay.desktop",
+  "license": "GPL-3.0-or-later",
+  "main": "src/main.cjs",
+  "scripts": {
+    "prebuild": "node node_modules/electron/install.js",
+    "build:engine": "node scripts/prune-engine.cjs && tsc -p tsconfig.json",
+    "build:native": "node scripts/build-linux.cjs",
+    "build": "npm run build:engine && npm run build:native",
+    "build:linux": "npm run build",
+    "check:system": "node scripts/check-linux-system.cjs",
+    "start": "electron .",
+    "test": "node --test tests/*.test.cjs && python3 tests/linux-platform.test.py",
+    "dist": "npm run build && electron-builder --linux AppImage deb",
+    "dist:linux": "npm run dist",
+    "export:release": "node scripts/export-release.cjs"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "electron": "42.11.10",
+    "electron-builder": "^26.0.12",
+    "marked": "^17.0.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@noble/curves": "1.9.7",
+    "multicast-dns": "7.2.5",
+    "plist": "3.1.0",
+    "dbus-next": "0.10.2"
+  },
+  "build": {
+    "appId": "io.github.roylyl.linuxplay",
+    "productName": "LinuxPlay",
+    "electronDist": "node_modules/electron/dist",
+    "compression": "maximum",
+    "electronLanguages": [
+      "zh-CN",
+      "zh-TW",
+      "en-US"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "asarUnpack": [
+      "src/*.cjs",
+      "build/engine/**",
+      "node_modules/**"
+    ],
+    "files": [
+      "src/*.cjs",
+      "src/ui/**",
+      "build/engine/**",
+      "package.json",
+      "LICENSE",
+      "NOTICE",
+      "vendor/**",
+      "docs/**",
+      "README.md",
+      "!docs/validation/**"
+    ],
+    "extraResources": [
+      {
+        "from": "resources/node",
+        "to": "node"
+      },
+      {
+        "from": "resources/node-LICENSE",
+        "to": "node-LICENSE"
+      },
+      {
+        "from": "build/native",
+        "to": "native"
+      },
+      {
+        "from": "resources/icons",
+        "to": "icons"
+      },
+      {
+        "from": "resources/authentication",
+        "to": "authentication",
+        "filter": [
+          "identity.pk8",
+          "certificate.p7b"
+        ]
+      }
+    ],
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "AudioVideo",
+      "syncDesktopName": true,
+      "icon": "resources/icons/linuxplay-512.png",
+      "artifactName": "LinuxPlay-${version}-${arch}.${ext}",
+      "desktop": {
+        "entry": {
+          "Name": "LinuxPlay",
+          "Comment": "Wireless CarPlay receiver"
+        }
+      },
+      "executableArgs": [
+        "--ozone-platform=x11"
+      ]
+    },
+    "deb": {
+      "maintainer": "Roylyl",
+      "depends": [
+        "libgtk-3-0 | libgtk-3-0t64",
+        "libnss3",
+        "libasound2 | libasound2t64",
+        "libxss1",
+        "libxtst6",
+        "libnotify4",
+        "libatspi2.0-0 | libatspi2.0-0t64",
+        "libuuid1",
+        "libsecret-1-0",
+        "xdg-utils",
+        "python3",
+        "bluez",
+        "network-manager",
+        "x11-xserver-utils"
+      ]
+    },
+    "afterAllArtifactBuild": "scripts/export-release.cjs"
+  }
+}

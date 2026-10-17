@@ -1,0 +1,80 @@
+# Node/Python dependencies and caches
+/node_modules/
+/resources/node/
+/tools/
+/.cache/
+/.npm/
+__pycache__/
+*.py[cod]
+*.tsbuildinfo
+
+# Linux build and release output
+/build/
+/dist/
+/coverage/
+/docs/validation/
+/README.preview.html
+/LinuxPlay-*.AppImage
+/LinuxPlay-*.deb
+/LinuxPlay-*-更新说明.md
+*.blockmap
+
+# Local authentication files, private keys and sealed storage
+*.pk8
+*.p7b
+*.pem
+*.key
+*.p12
+*.pfx
+*.dpapi
+engine-key.encrypted
+
+# Include the bundled authentication pair in source distributions
+/resources/authentication/*
+!/resources/authentication/identity.pk8
+!/resources/authentication/certificate.p7b
+
+# Local credentials, settings and pairing records
+.env
+.env.*
+!.env.example
+/.npmrc
+/.netrc
+/secrets/
+/credentials/
+/userData/
+settings.json
+identity.json
+pairings.json
+diagnostics.json
+*.local.json
+
+# Diagnostic exports, captures and runtime traces
+/debug/
+/diagnostics/
+/logs/
+/LinuxPlay-*-diagnostics*.json
+*.log
+*.pcap
+*.pcapng
+*.heapsnapshot
+*.cpuprofile
+*.dmp
+/core
+/core.[0-9]*
+
+# Local editor/assistant state and temporary files
+/.codex/
+/.idea/
+/.vscode/
+/.claude/
+/.cursor/
+AGENTS.md
+AGENTS.local.md
+CLAUDE.local.md
+.DS_Store
+*.swp
+*.swo
+*~
+*.tmp
+*.bak
